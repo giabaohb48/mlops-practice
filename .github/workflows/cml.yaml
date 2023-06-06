@@ -2,18 +2,23 @@ name: model-wine-quality
 on: [push]
 jobs:
   run:
-    runs-on: [ubuntu-latest]
-    container: docker://dvcorg/cml-py3:latest
+    runs-on: ubuntu-latest
+    # container: docker://dvcorg/cml-py3:latest
+    container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:
-      - uses: actions/checkout@v2
-      - name: cml_run
+      - uses: actions/checkout@v3
+      - uses: iterative/setup-cml@v1
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Train model
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python --version
           # Your ML workflow goes here
           pip install -r requirements.txt
-          
+
           echo "-------------Start training--------------"
           python train.py
           
