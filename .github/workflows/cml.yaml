@@ -10,14 +10,13 @@ jobs:
       - uses: iterative/setup-cml@v1
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.8'
       - name: Train model
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           sudo apt update
-          sudo apt install glibc-source -y
-
+          sudo apt install libc6 -y
           python --version
 
           # Your ML workflow goes here
