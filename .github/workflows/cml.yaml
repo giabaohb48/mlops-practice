@@ -18,7 +18,8 @@ jobs:
 
           echo "-------------Start training--------------"
           python train.py
-          
+          cat metrics.txt
+
           echo "## Model metrics" > report.md
           cat metrics.txt >> report.md
           
@@ -27,3 +28,4 @@ jobs:
           echo "![](residuals.png)" >> report.md
           
           cml comment create report.md
+          cml pr create .
