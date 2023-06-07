@@ -19,9 +19,9 @@ jobs:
           echo "-------------Start training--------------"
           python train.py
 
-          git add model/finalized_model.pkl
-          git commit "update model"
-          git push
+          sudo git add model/finalized_model.pkl
+          sudo git commit "update model"
+          sudo git push --force
 
           echo "## Model metrics" > report.md
           cat metrics.txt >> report.md
