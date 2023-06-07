@@ -18,10 +18,10 @@ jobs:
 
           echo "-------------Start training--------------"
           python train.py
-
-          sudo git add model/finalized_model.pkl
-          sudo git commit "update model"
-          sudo git push --force
+          git config --global --add safe.directory /__w/mlops-practice/mlops-practice
+          git add model/finalized_model.pkl
+          git commit "update model"
+          git push --force
 
           echo "## Model metrics" > report.md
           cat metrics.txt >> report.md
