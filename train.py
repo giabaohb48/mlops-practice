@@ -4,6 +4,8 @@ from sklearn.ensemble import RandomForestRegressor
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import pickle
+
 # Set random seed
 seed = 42
 
@@ -36,6 +38,8 @@ with open("metrics.txt", 'w') as outfile:
         outfile.write("Training variance explained: %2.1f%%\n" % train_score)
         outfile.write("Test variance explained: %2.1f%%\n" % test_score)
 
+filename = 'finalized_model.sav'
+pickle.dump(regr, open(filename, 'wb'))
 
 ##########################################
 ##### PLOT FEATURE IMPORTANCE ############
