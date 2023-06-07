@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import pickle
-
+import os
 
 seed = 42
 max_depth = 5
