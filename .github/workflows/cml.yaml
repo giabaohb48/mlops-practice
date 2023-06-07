@@ -18,10 +18,6 @@ jobs:
 
           echo "-------------Start training--------------"
           python train.py
-          git config --global --add safe.directory /__w/mlops-practice/mlops-practice
-          git add model/finalized_model.pkl
-          git commit "update model"
-          git push origin experiment --force
 
           echo "## Model metrics" > report.md
           cat metrics.txt >> report.md
