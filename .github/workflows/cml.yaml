@@ -18,7 +18,10 @@ jobs:
 
           echo "-------------Start training--------------"
           python train.py
-          cat metrics.txt
+
+          git add model/finalized_model.pkl
+          git commit "update model"
+          git push
 
           echo "## Model metrics" > report.md
           cat metrics.txt >> report.md

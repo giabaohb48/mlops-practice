@@ -6,8 +6,9 @@ import seaborn as sns
 import numpy as np
 import pickle
 
-# Set random seed
+
 seed = 42
+max_depth = 5
 
 ################################
 ########## DATA PREP ###########
@@ -25,7 +26,7 @@ X_train, X_test, y_train, y_test = train_test_split(df, y, test_size=0.2, random
 #################################
 
 # Fit a model on the train section
-regr = RandomForestRegressor(max_depth=5, random_state=seed)
+regr = RandomForestRegressor(max_depth=max_depth, random_state=seed)
 regr.fit(X_train, y_train)
 
 # Report training set score
@@ -38,8 +39,8 @@ with open("metrics.txt", 'w') as outfile:
         outfile.write("Training variance explained: %2.1f%%\n" % train_score)
         outfile.write("Test variance explained: %2.1f%%\n" % test_score)
 
-filename = 'finalized_model.sav'
-pickle.dump(regr, open(filename, 'wb'))
+if not os.path.exists("model"):
+    os.makedirs("model")
 
 ##########################################
 ##### PLOT FEATURE IMPORTANCE ############
@@ -87,3 +88,7 @@ plt.xlim((2.5,8.5))
 plt.tight_layout()
 plt.savefig("residuals.png",dpi=120) 
 
+
+## Save model
+filename = 'model/finalized_model.pkl'
+pickle.dump(regr, open(filename, 'wb'))
