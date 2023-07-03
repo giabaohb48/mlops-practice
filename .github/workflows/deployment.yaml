@@ -39,6 +39,7 @@ jobs:
     name: Deploy container on EC2
     runs-on: [self-hosted, ubuntu-latest]
     needs: build-and-push
+    steps:
     - name: Install AWS CLI
       run: |
         sudo apt-get install awscli
