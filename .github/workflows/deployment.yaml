@@ -30,7 +30,7 @@ jobs:
     - name: Automatic Tagging of Releases
       id: increment-git-tag
       run: |
-        bash ./build/git_update.sh -v minor
+        bash ./build/git_update.sh -v patch
 
     - name: Build, Tag, and Push the Image to Amazon ECR
       id: build-image
@@ -44,14 +44,13 @@ jobs:
 
   deploy-container:
     name: Deploy container on EC2
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     needs: build-and-push
     steps:
     - uses: actions/checkout@v3
     - name: Install AWS CLI
       run: |
         sudo apt-get install awscli
-
     - name: Provision EC2 instance
       run: |
         # Launch EC2 instance with userdata
