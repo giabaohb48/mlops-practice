@@ -3,8 +3,8 @@ on:
   push:
     branches: [ master ]
 jobs:
-  cicd:
-    name: CICD
+  build-and-push:
+    name: Build and push image to Dockerhub
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
