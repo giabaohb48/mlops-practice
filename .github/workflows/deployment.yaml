@@ -53,7 +53,7 @@ jobs:
 
     - name: Provision EC2 instance
       run: |
-
+        ls -al
         # Launch EC2 instance with userdata
         INSTANCE_ID=$(aws ec2 run-instances \
           --image-id ami-12345678 \
@@ -61,7 +61,7 @@ jobs:
           --key-name my-key-pair \
           --security-group-ids sg-12345678 \
           --subnet-id subnet-12345678 \
-          --user-data file://./build/userdata.sh \
+          --user-data file://build/userdata.sh \
           --output text --query 'Instances[0].InstanceId')
         
         echo "EC2 instance ID: $INSTANCE_ID"
