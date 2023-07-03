@@ -54,12 +54,20 @@ jobs:
     - name: Provision EC2 instance
       run: |
         # Launch EC2 instance with userdata
+        echo "#! /bin/bash
+sudo yum update -y
+sudo yum install -y docker
+sudo service docker start
+sudo usermod -a -G docker ec2-user
+sudo docker pull giabaohb48/mlops-practice:latest
+sudo docker run --name mlops-practice -p 3000:3000 -d mlops-practice:latest" > userdata.sh
+
         INSTANCE_ID=$(aws ec2 run-instances \
           --image-id ami-06b09bfacae1453cb \
           --instance-type t2.micro \
           --key-name key \
           --security-group-ids sg-08ab097077fc377d9 \
-          --user-data file://build/userdata.sh \
+          --user-data file://userdata.sh \
           --output text --query 'Instances[0].InstanceId')
         
         echo "EC2 instance ID: $INSTANCE_ID"
