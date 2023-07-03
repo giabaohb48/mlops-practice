@@ -53,14 +53,12 @@ jobs:
 
     - name: Provision EC2 instance
       run: |
-        ls -al
         # Launch EC2 instance with userdata
         INSTANCE_ID=$(aws ec2 run-instances \
-          --image-id ami-12345678 \
+          --image-id ami-06b09bfacae1453cb \
           --instance-type t2.micro \
-          --key-name my-key-pair \
-          --security-group-ids sg-12345678 \
-          --subnet-id subnet-12345678 \
+          --key-name key \
+          --security-group-ids sg-08ab097077fc377d9 \
           --user-data file://build/userdata.sh \
           --output text --query 'Instances[0].InstanceId')
         
