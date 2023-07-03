@@ -10,12 +10,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-1
+    # - name: Configure AWS credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     aws-region: us-west-1
 
     # - name: Login to Amazon ECR
     #   id: login-ecr
@@ -39,8 +39,8 @@ jobs:
         DOCKER_REPOSITORY: mlops-practice
         IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |
-        docker build -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$IMAGE_TAG .
-        docker push $DOCKER_REGISTRY/$DOCKER_REPOSITORY:$IMAGE_TAG
+        docker build -t $DOCKER_REGISTRY/$DOCKER_REPOSITORY:latest .
+        docker push $DOCKER_REGISTRY/$DOCKER_REPOSITORY:latest
 
   deploy-container:
     name: Deploy container on EC2
@@ -53,7 +53,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-1
+        aws-region: us-east-1
 
     - name: Provision EC2 instance
       run: |
