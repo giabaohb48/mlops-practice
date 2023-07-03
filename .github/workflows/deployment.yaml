@@ -35,3 +35,24 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Install AWS CLI
+      run: |
+        curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install
+  
+    - name: Provision EC2 instance
+      run: |
+
+        # Launch EC2 instance with userdata
+        INSTANCE_ID=$(aws ec2 run-instances \
+          --image-id ami-12345678 \
+          --instance-type t2.micro \
+          --key-name my-key-pair \
+          --security-group-ids sg-12345678 \
+          --subnet-id subnet-12345678 \
+          --user-data file://path/to/userdata.sh \
+          --output text --query 'Instances[0].InstanceId')
+        
+        echo "EC2 instance ID: $INSTANCE_ID"

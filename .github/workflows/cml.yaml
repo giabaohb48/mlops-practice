@@ -42,6 +42,7 @@ jobs:
 
           echo "-------------Start training--------------"
           python train.py
+          echo "Training success!!"
 
           echo "## Model metrics" > report.md
           cat metrics.txt >> report.md
