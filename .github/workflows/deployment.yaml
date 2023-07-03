@@ -37,7 +37,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
   deploy-container:
     name: Deploy container on EC2
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, ubuntu-latest]
     - name: Install AWS CLI
       run: |
         sudo apt-get install awscli
