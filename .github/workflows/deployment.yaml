@@ -3,8 +3,8 @@ on:
   push:
     branches: [ master ]
 jobs:
-  build-and-push:
-    name: Build and Push to ECR
+  cicd:
+    name: CICD
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
