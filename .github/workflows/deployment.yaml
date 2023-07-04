@@ -65,6 +65,6 @@ jobs:
           --key-name key \
           --security-group-ids sg-08ab097077fc377d9 \
           --user-data file://build/userdata.sh \
-          --output text --query 'Reservations[*].Instances[*].PublicIpAddress')
+          --output text --query 'Instances[0].PublicIpAddress')
         
         echo "API serve at: $PUBLIC_IP/predict"
