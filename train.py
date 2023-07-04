@@ -8,7 +8,7 @@ import pickle
 import os
 
 seed = 42
-max_depth = 5
+max_depth = 4
 
 ################################
 ########## DATA PREP ###########
