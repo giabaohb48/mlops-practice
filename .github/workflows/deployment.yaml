@@ -58,13 +58,13 @@ jobs:
     - name: Provision EC2 instance
       run: |
         # Launch EC2 instance with userdata
-        PUBLIC_IP=$(aws ec2 run-instances \
+        INSTANCE_ID=$(aws ec2 run-instances \
           --region us-east-1 \
           --image-id ami-06b09bfacae1453cb \
           --instance-type t2.micro \
           --key-name key \
           --security-group-ids sg-08ab097077fc377d9 \
           --user-data file://build/userdata.sh \
-          --output text --query 'Instances[0].PublicIpAddress')
+          --output text --query 'Instances[0].InstanceId')
         
-        echo "API serve at: $PUBLIC_IP/predict"
+        echo "EC2 instance ID: $INSTANCE_ID"
