@@ -8,7 +8,7 @@ import pickle
 import os
 
 seed = 42
-max_depth = 4
+max_depth = 5
 
 ################################
 ########## DATA PREP ###########
@@ -91,6 +91,6 @@ plt.savefig("residuals.png",dpi=120)
 
 ## Save model
 print('Saving model...')
-filename = 'model/finalized_model.pkl'
+filename = './model/finalized_model.pkl'
 pickle.dump(regr, open(filename, 'wb'))
 print('Save done.')
