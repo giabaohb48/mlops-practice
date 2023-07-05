@@ -10,17 +10,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Train model
-        env:
-          # repo_token: ${{ secrets.GITHUB_TOKEN }}
-          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        run: |
+      env:
+        # repo_token: ${{ secrets.GITHUB_TOKEN }}
+        REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      run: |
 
-          # Your ML workflow goes here
-          pip install -r requirements.txt
+        # Your ML workflow goes here
+        pip install -r requirements.txt
 
-          echo "-------------Start training--------------"
-          python train.py
-          echo "Training success!!"
+        echo "-------------Start training--------------"
+        python train.py
+        echo "Training success!!"
     # - name: Configure AWS credentials
     #   uses: aws-actions/configure-aws-credentials@v1
     #   with:
